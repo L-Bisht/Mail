@@ -1,0 +1,85 @@
+{% extends "mail/layout.html" %}
+{% load static %}
+
+{% block head %}
+<style>
+    body{
+        background: url('/static/mail/background.jpg') 50% no-repeat fixed;
+    }
+    .side-item:hover{
+        background-color: white;
+        opacity: 0.7;
+        cursor: pointer;
+        border-top-right-radius: 40px;
+        border-bottom-right-radius: 40px;
+    }
+    .material-icons{
+        margin-top: 2px;
+    }
+    #compose-view, .email{
+        background-color: white;
+        width: 800px;
+        border-radius: 5px;
+    }
+</style>
+{% endblock head %}
+    
+
+{% block body %}
+<div class="container-fluid row">
+    <aside style="background-color: transparent;" class="sidebar position-fixed col-md-2 p-0">
+        <ul class="navbar-nav">
+            <li class="side-item nav-item">
+                <div class="nav-link" id="compose">
+                    <span class="material-icons mr-2">add</span>Compose
+                </div>
+            </li>
+            <li class="side-item nav-item">
+                <div class="nav-link" id="inbox">
+                    <span class="material-icons mr-2">all_inbox</span>Inbox
+                </div>
+            </li>
+            <li class="side-item nav-item">
+                <div class="nav-link" id="sent">
+                    <span class="material-icons mr-2">send</span>Sent
+                </div>
+            </li>
+            <li class="side-item nav-item">
+                <div class="nav-link" id="archived">
+                    <span class="material-icons mr-2">archive</span>Archived
+                </div>
+            </li>
+        </ul>
+    </aside>
+    <main style="margin-left: 17%;" class="col-md-10">
+        <div id="emails-view" class="mb-4 mt-2">
+            <h3 id="mailbox"></h3>
+            <div id="mail-sent"></div>
+        </div>
+            
+        <div id="compose-view" class="mx-auto p-3 mb-4 mt-2">
+            <div id="not-sent"></div>
+            <h3>New Email</h3>
+            <form id="compose-form">
+                <div class="form-group">
+                    From: <input disabled class="form-control" value="{{ request.user.email }}">
+                </div>
+                <div class="form-group">
+                    To: <input id="compose-recipients" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" id="compose-subject" placeholder="Subject">
+                </div>
+                <textarea class="form-control" id="compose-body" placeholder="Body"></textarea>
+                <input type="submit" class="mx-auto btn mt-2 btn-primary" value="Send">
+            </form>
+        </div>
+    </main>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>var user = "{{request.user}}";</script>
+<script src="{% static 'mail/inbox.js' %}"></script>
+<script src="{% static 'mail/compose.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,69 @@
+body{
+    background-color: rgb(247, 239, 239);
+}
+
+textarea {
+    min-height: 400px;
+}
+
+@keyframes fade{
+    0%{
+        height: 100%;
+        line-height: 100%;
+        padding: 10px;
+    }
+    75%{
+        opacity: 0;
+        height: 100%;
+        line-height: 100%;
+        padding: 10px;
+    }
+    100%{
+        opacity: 0;
+        height: 0px;
+        line-height: 0px;
+        padding: 0px;
+    }
+}
+.mail {
+    padding: 1px;
+    animation-name: fade;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+    cursor: pointer;
+    border-bottom: 1px solid black;
+}
+.mail:hover{
+    box-shadow: 0 5px 12px black;
+}
+
+.icon-btn{
+    position: relative;
+    /* margin-top: -35px; */
+    background-color: transparent;
+    border: none;
+    border-radius: 40px;
+    padding: 5px;
+}
+
+.icon-btn:hover{
+    background-color: rgb(177, 174, 174);
+}
+.icon-btn:active{
+    outline: none;
+}
+
+.timestamp{
+    position: relative;
+    margin-top: -25px;
+}
+
+#email-view{
+    background-color: white;
+    height: 100%;
+}
+
+#mail-body{
+    white-space: pre-wrap;
+}
